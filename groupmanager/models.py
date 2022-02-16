@@ -1,14 +1,15 @@
 from django.db import models
 
-#1 Question contains N Groups
-class Question(models.Model):
-    name = models.CharField(max_length=50)
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+# 1 Event contains N Topics
+class Event(models.Model):
+    title = models.CharField(max_length=50)
 
-class Group(models.Model):
-    name = models.CharField(max_length=255)
+# 1 Topic contains N Participants
+class Topic(models.Model):
+    title = models.CharField(max_length=255)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
 
-#N Participant answear 1 Question
+# N Participants belong to M Topics
 class Participant(models.Model):
     name = models.CharField(max_length=50)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    topics = models.ManyToManyField("", Topic, on_delete=models.CASCADE)
