@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Yeetcoo</title>
+    </head>
+    <body>
+        <form action="{% url 'groupmanager:index'%}" method="post"></form>
+        {% csrf_token %}
+            <fieldset>
+                {% if error_message %} <p><strong>{{ error_message }}</strong></p>{% endif %}
+                <label for="event_id">Event ID: </label>
+                <input type="text" id="event_id">
+                <input type="submit" value="Event beitreten">
+            </fieldset>
+        </form>
+        <form action="{% url 'groupmanager:index' %}">
+            <input type="submit" value="Neues Event erstellen">
+        </form>
+    </body>
+</html>
